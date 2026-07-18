@@ -9,7 +9,8 @@ using MimeKit.Text;
 
 namespace Exkyn.Notifications.Email.Providers.MailKit;
 
-public class MailKitEmailSender(IOptions<EmailSettings> options) : IEmailSender
+public class MailKitEmailSender(IOptions<EmailSettings> options,
+    ISmtpClient _smtpClient) : IEmailSender
 {
     private readonly EmailSettings _settings = options.Value;
 
@@ -33,22 +34,20 @@ public class MailKitEmailSender(IOptions<EmailSettings> options) : IEmailSender
             Text = message.Body
         };
 
-        using var client = new SmtpClient();
-
         try
         {
             var secureSocketOptions = _settings.EnableSsl ? SecureSocketOptions.StartTls : SecureSocketOptions.None;
 
-            await client.ConnectAsync(_settings.Host, _settings.Port, secureSocketOptions, cancellationToken);
+            await _smtpClient.ConnectAsync(_settings.Host, _settings.Port, secureSocketOptions, cancellationToken);
 
             if (!string.IsNullOrWhiteSpace(_settings.Username) && !string.IsNullOrWhiteSpace(_settings.Password))
-                await client.AuthenticateAsync(_settings.Username, _settings.Password, cancellationToken);
+                await _smtpClient.AuthenticateAsync(_settings.Username, _settings.Password, cancellationToken);
 
-            await client.SendAsync(mimeMessage, cancellationToken);
+            await _smtpClient.SendAsync(mimeMessage, cancellationToken);
         }
         finally
         {
-            await client.DisconnectAsync(true, cancellationToken);
+            await _smtpClient.DisconnectAsync(true, cancellationToken);
         }
     }
 }
