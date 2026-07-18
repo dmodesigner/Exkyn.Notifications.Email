@@ -4,10 +4,12 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageIcon>exkyn-notifications-email.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Exceptions\" />
+    <None Include="..\..\.github\images\exkyn-notifications-email.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
