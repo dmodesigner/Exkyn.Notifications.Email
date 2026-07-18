@@ -8,10 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
     <None Include="..\..\.github\images\exkyn-notifications-email.png" Pack="true" PackagePath="\" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>  
+  
   <ItemGroup>
     <PackageReference Include="Exkyn.Notifications" Version="1.0.2" />
     <PackageReference Include="MailKit" Version="4.17.0" />
