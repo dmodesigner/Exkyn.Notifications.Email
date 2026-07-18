@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="Exkyn.Notifications.Email.Tests" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <None Include="..\..\.github\images\exkyn-notifications-email.png" Pack="true" PackagePath="\" />
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>

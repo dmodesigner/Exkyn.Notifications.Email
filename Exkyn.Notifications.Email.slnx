@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="Src/Exkyn.Notifications.Email.Tests/Exkyn.Notifications.Email.Tests.csproj" />
   <Project Path="Src/Exkyn.Notifications.Email/Exkyn.Notifications.Email.csproj" />
 </Solution>
